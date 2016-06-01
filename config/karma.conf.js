@@ -4,6 +4,8 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
     plugins: [
       require('karma-jasmine'),
+      require('karma-coverage'),
+      require('karma-json-reporter'),
       require('karma-chrome-launcher')
     ],
     customLaunchers: {
@@ -20,6 +22,7 @@ module.exports = function (config) {
       { pattern: 'dist/vendor/systemjs/dist/system-polyfills.js', included: true, watched: false },
       { pattern: 'dist/vendor/systemjs/dist/system.src.js', included: true, watched: false },
       { pattern: 'dist/vendor/zone.js/dist/async-test.js', included: true, watched: false },
+      { pattern: 'node_modules/moment/min/moment.min.js', included: true, watched: true },
 
       { pattern: 'config/karma-test-shim.js', included: true, watched: true },
 
@@ -30,8 +33,19 @@ module.exports = function (config) {
       // Vendor packages might include spec files. We don't want to use those.
       'dist/vendor/**/*.spec.js'
     ],
-    preprocessors: {},
-    reporters: ['progress'],
+    preprocessors: {
+      'dist/app/**/!(*spec).js': ['coverage']
+    },
+    reporters: ['progress', 'json', 'coverage'],
+    jsonReporter: {
+      stdout: false,
+      outputFile: 'tmp/karma-results.json'
+    },
+    coverageReporter: {
+      reporters:[
+        {type: 'json', subdir: '.', file: 'coverage-final.json'}
+      ]
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

@@ -7,8 +7,8 @@ describe('ponyracer App', function() {
     page = new PonyracerPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying that\'s always a pleasure to bet on ponies', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('ponyracer works!');
+    expect(page.getParagraphText()).toEqual('Ponyracer Always a pleasure to bet on ponies');
   });
 });
