@@ -1,0 +1,1 @@
+{"version":3,"file":"race.model.js","sourceRoot":"","sources":["race.model.ts"],"names":[],"mappings":"","sourcesContent":["import { PonyModel } from './pony.model';\n\nexport interface RaceModel {\n    name: string;\n    ponies: Array<PonyModel>;\n    startInstant: string;\n}\n"]}
